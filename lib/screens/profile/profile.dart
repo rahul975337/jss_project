@@ -11,6 +11,7 @@ class _ProfileState extends State<Profile> {
     return Container(
       height: 200,
       width: 100,
+      color: Colors.red,
     );
   }
 }
