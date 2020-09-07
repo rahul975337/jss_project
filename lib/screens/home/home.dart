@@ -16,7 +16,7 @@ class _HomeState extends State<Home> {
         (_safePaddingBottom + _safePaddingTop);
     _keyboard = MediaQuery.of(context).viewInsets.bottom;
     return Container(
-      height: _height * 0.5,
+      height: _height * 0.6,
       width: _width * 0.75,
     );
   }
