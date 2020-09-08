@@ -184,8 +184,7 @@ class _HomeState extends State<Home> {
                           borderRadius: BorderRadius.circular(_width * 0.06),
                           child: Image(
                             fit: BoxFit.fill,
-                            image: NetworkImage(
-                                'https://www.worldeasyguides.com/wp-content/uploads/2014/04/Where-is-Russell-Square-on-map-London.jpg'),
+                            image: NetworkImage(kMapPhoto),
                           ),
                         ),
                       ),
@@ -287,6 +286,7 @@ class CollegeImageSlider extends StatelessWidget {
     kCollegePhotos,
     kCollegePhotos
   ];
+
   CollegeImageSlider({
     Key key,
     @required double height,

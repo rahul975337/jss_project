@@ -18,5 +18,7 @@ const Color kSocialComponentShadowColour = Color(0xC3002BFF);
 /////////////////////////
 String kImageUrl =
     'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQqyLY06eRoWwhnWGBqnbcYszs-nvbVwx5u1w&usqp=CAU';
-    String kCollegePhotos =
+String kCollegePhotos =
     'https://content3.jdmagicbox.com/def_content/colleges/default-colleges-7.jpg?clr=1c4a4a';
+String kMapPhoto =
+    'https://www.worldeasyguides.com/wp-content/uploads/2014/04/Where-is-Russell-Square-on-map-London.jpg';
