@@ -16,6 +16,9 @@ const Color kSocialTextColour = Color(0xFF000000);
 const Color kSocialBottomContainerColour = Color(0xFFEB1555);
 const Color kSocialComponentShadowColour = Color(0xC3002BFF);
 /////////////////////////
+String kCollegeDescription =
+    'MIT World Peace University is a state private university located in Kothrud, Pune, India. It is a part of the MIT Group of Institutions. It is officially named as Dr. Vishwanath Karad MIT World Peace University. It was established under Government of Maharashtra MIT World Peace University is a state private university located in Kothrud, Pune, India. It is a part of the MIT Group of Institutions. It is officially named as Dr. Vishwanath Karad MIT World Peace University. It was established under Government of Maharashtra  is a state private university located in Kothrud, Pune, India. It is a part of the MIT Group of Institutions. It is officially named as Dr. Vishwanath Karad MIT World Peace University. It was established under Government of Maharashtra  is a state private university located in Kothrud, Pune, India. It is a part of the MIT Group of Institutions.';
+
 String kImageUrl =
     'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQqyLY06eRoWwhnWGBqnbcYszs-nvbVwx5u1w&usqp=CAU';
 String kCollegePhotos =

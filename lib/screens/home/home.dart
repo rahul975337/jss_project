@@ -2,6 +2,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
+// import 'package:flutter_windowmanager/flutter_windowmanager.dart';
 import 'package:jss_project/constants/constants.dart';
 
 class Home extends StatefulWidget {
@@ -13,6 +14,23 @@ class _HomeState extends State<Home> {
   double _safePaddingTop, _safePaddingBottom, _height, _width, _keyboard;
 
   int currentSelectedIndex;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE);
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    // try {
+    //   // FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE);
+    // } catch (e) {
+    //   print('hey');
+    // }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +49,11 @@ class _HomeState extends State<Home> {
         child: Container(
           child: Row(
             children: [
-              Container(
+              AnimatedContainer(
                 height: _height,
                 width: 60,
                 // color: kProfSecondaryBackgroundColor,
+                duration: Duration(milliseconds: 200),
                 child: Column(
                   children: [
                     Container(
@@ -86,10 +105,13 @@ class _HomeState extends State<Home> {
                   ],
                 ),
               ),
-              Container(
+              AnimatedContainer(
                 height: _height,
                 color: kProfPrimaryBackgroundColor,
+
                 width: _width - 60,
+                // color: kProfSecondaryBackgroundColor,
+                duration: Duration(milliseconds: 200),
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
