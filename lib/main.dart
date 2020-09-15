@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:jss_project/screens/hostelites/hostelites.dart';
 
-import 'package:jss_project/screens/maintainance/maintainance.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(),
-      home: Maintainance(),
+      home: Hostelites(),
     );
   }
 }
