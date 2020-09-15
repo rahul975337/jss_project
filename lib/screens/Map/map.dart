@@ -10,11 +10,13 @@ class MapSample extends StatefulWidget {
 
 class MapSampleState extends State<MapSample> {
   Completer<GoogleMapController> _controller = Completer();
+
   BitmapDescriptor myIcon;
   @override
   void initState() {
+    super.initState();
     BitmapDescriptor.fromAssetImage(
-            ImageConfiguration(size: Size(48, 48)), 'lib/assets/my_icon.png')
+            ImageConfiguration(size: Size(48, 48)), 'lib/assets/JSS_Logo.png')
         .then((onValue) {
       myIcon = onValue;
     });
@@ -29,7 +31,7 @@ class MapSampleState extends State<MapSample> {
       bearing: 192.8334901395799,
       target: _collegeLoc,
       tilt: 59.440717697143555,
-      zoom: 18.5);
+      zoom: 19);
   final Set<Marker> _markers = {
     // Marker(
     //   markerId: MarkerId('Bairagarh'),
@@ -52,7 +54,7 @@ class MapSampleState extends State<MapSample> {
         myLocationEnabled: true,
         compassEnabled: false,
         indoorViewEnabled: true,
-        padding: EdgeInsets.all(100),
+        // padding: EdgeInsets.all(100),
         myLocationButtonEnabled: true,
         rotateGesturesEnabled: true,
         zoomGesturesEnabled: true,

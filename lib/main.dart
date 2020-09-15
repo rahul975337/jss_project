@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jss_project/screens/Map/map.dart';
-import 'package:jss_project/screens/Profile/profile.dart';
 
-import 'screens/home/home.dart';
+import 'package:jss_project/screens/maintainance/maintainance.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,7 +14,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(),
-      home: MapSample(),
+      home: Maintainance(),
     );
   }
 }

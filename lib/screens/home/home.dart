@@ -79,7 +79,7 @@ class _HomeState extends State<Home> {
                         shrinkWrap: true,
                         itemCount: 4,
                         itemBuilder: (context, index) {
-                          return CustomWidget(
+                          return SideTile(
                             index: index,
                             title: titles[index],
                             isSelected: currentSelectedIndex == index,
@@ -232,13 +232,13 @@ class _HomeState extends State<Home> {
   }
 }
 
-class CustomWidget extends StatefulWidget {
+class SideTile extends StatefulWidget {
   final int index;
   final bool isSelected;
   final VoidCallback onSelect;
   final String title;
 
-  const CustomWidget({
+  const SideTile({
     Key key,
     @required this.index,
     @required this.isSelected,
@@ -252,10 +252,10 @@ class CustomWidget extends StatefulWidget {
         super(key: key);
   final double _height;
   @override
-  _CustomWidgetState createState() => _CustomWidgetState();
+  _SideTileState createState() => _SideTileState();
 }
 
-class _CustomWidgetState extends State<CustomWidget> {
+class _SideTileState extends State<SideTile> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
