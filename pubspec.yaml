@@ -21,6 +21,7 @@ dependencies:
   hexcolor: ^1.0.4
   step_progress_indicator: ^0.2.4+7
   timeline_tile: ^0.1.2
+  date_range_picker: ^1.0.6
   
   flutter_svg: ^0.18.0
 

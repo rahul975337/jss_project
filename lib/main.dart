@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jss_project/screens/hostelites/hostelites.dart';
-
+import 'package:jss_project/feasting.dart';
+import 'package:jss_project/screens/permission/permission.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,8 +13,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(),
-      home: Hostelites(),
+      theme: ThemeData.dark(),
+      home: Permssion(),
     );
   }
 }
