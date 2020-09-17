@@ -6,48 +6,55 @@ class DatePickerDemo extends StatefulWidget {
 }
 
 class _DatePickerDemoState extends State<DatePickerDemo> {
-  /// Which holds the selected date
-  /// Defaults to today's date.
-  DateTime selectedDate = DateTime.now();
+  bool _isEditingText = false;
+  TextEditingController _editingController;
+  String initialText = "Sapna Fulwani";
+  @override
+  void initState() {
+    super.initState();
+    _editingController = TextEditingController();
+  }
 
-  _selectDate(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
-      context: context,
-      initialDate: selectedDate,
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2025),
-    );
-    if (picked != null && picked != selectedDate)
-      setState(() {
-        selectedDate = picked;
-      });
+  @override
+  void dispose() {
+    _editingController.dispose();
+    super.dispose();
+  }
+
+  Widget _editTitleTextField() {
+    if (_isEditingText)
+      return Center(
+        child: TextField(
+          onSubmitted: (newValue) {
+            setState(() {
+              initialText = newValue;
+              _isEditingText = false;
+            });
+          },
+          autofocus: true,
+          controller: _editingController,
+        ),
+      );
+    return InkWell(
+        onTap: () {
+          setState(() {
+            _isEditingText = true;
+          });
+        },
+        child: Text(
+          initialText,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 18.0,
+          ),
+        ));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Text(
-              "${selectedDate.toLocal()}".split(' ')[0],
-              style: TextStyle(fontSize: 55, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
-            RaisedButton(
-              onPressed: () => _selectDate(context),
-              child: Text(
-                'Select date',
-                style:
-                    TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-              ),
-              color: Colors.greenAccent,
-            ),
-          ],
-        ),
+        child: _editTitleTextField(),
       ),
     );
   }

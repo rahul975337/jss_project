@@ -15,11 +15,11 @@ class MapSampleState extends State<MapSample> {
   @override
   void initState() {
     super.initState();
-    BitmapDescriptor.fromAssetImage(
-            ImageConfiguration(size: Size(48, 48)), 'lib/assets/JSS_Logo.png')
-        .then((onValue) {
-      myIcon = onValue;
-    });
+    // BitmapDescriptor.fromAssetImage(
+    //         ImageConfiguration(size: Size(48, 48)), 'lib/assets/JSS_Logo.png')
+    //     .then((onValue) {
+    //   myIcon = onValue;
+    // });
   }
 
   // static final CameraPosition _kGooglePlex = CameraPosition(

@@ -1,5 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:draw_graph/draw_graph.dart';
+import 'package:draw_graph/models/feature.dart';
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_windowmanager/flutter_windowmanager.dart';
@@ -43,188 +45,129 @@ class _HomeState extends State<Home> {
     List titles = ['Permissions', 'Maintainance', 'Attendance', 'Members'];
     List foodType = ['Breakfast', 'Lunch', 'Dinner'];
     List count = ['200', '340', '640'];
+    
     return Scaffold(
       backgroundColor: kProfPrimaryBackgroundColor,
       body: SafeArea(
         child: Container(
-          child: Row(
-            children: [
-              AnimatedContainer(
-                height: _height,
-                width: 60,
-                // color: kProfSecondaryBackgroundColor,
-                duration: Duration(milliseconds: 200),
-                child: Column(
-                  children: [
-                    Container(
-                      height: _height * 0.1,
-                      width: 60,
-                      child: Icon(
-                        FeatherIcons.settings,
-                        color: kProfTextColour,
-                        size: _width * 0.08,
-                      ),
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: kProfSecondaryBackgroundColor,
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(_width * 0.08),
-                          bottomRight: Radius.circular(_width * 0.08),
-                        ),
-                      ),
-                      height: _height - _height * 0.2,
-                      width: 60,
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: 4,
-                        itemBuilder: (context, index) {
-                          return SideTile(
-                            index: index,
-                            title: titles[index],
-                            isSelected: currentSelectedIndex == index,
-                            onSelect: () {
-                              setState(() {
-                                currentSelectedIndex = index;
-                              });
-                            },
-                            height: _height,
-                          );
-                        },
-                      ),
-                    ),
-                    Container(
-                      height: _height * 0.1,
-                      width: 60,
-                      child: Icon(
-                        Icons.home,
-                        color: kProfTextColour,
-                        size: _width * 0.08,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              AnimatedContainer(
-                height: _height,
-                color: kProfPrimaryBackgroundColor,
+          child: AnimatedContainer(
+            height: _height,
+            color: kProfPrimaryBackgroundColor,
 
-                width: _width - 60,
-                // color: kProfSecondaryBackgroundColor,
-                duration: Duration(milliseconds: 200),
-                child: SingleChildScrollView(
-                  child: Column(
+            width: _width,
+            // color: kProfSecondaryBackgroundColor,
+            duration: Duration(milliseconds: 200),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Row(
                     children: [
-                      Row(
-                        children: [
-                          Container(
-                            margin: EdgeInsets.only(
-                                left: _width * 0.1, top: _height * 0.08),
-                            child: CircleAvatar(
-                              radius: _width * 0.08,
-                              backgroundColor: kProfPrimaryBackgroundColor,
-                              backgroundImage: NetworkImage(kImageUrl),
-                            ),
-                          ),
-                          SizedBox(
-                            width: _width * 0.04,
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(top: _height * 0.08),
-                            child: TyperAnimatedTextKit(
-                                onTap: () {
-                                  print("Tap Event");
-                                },
-                                text: [
-                                  "Hello,\nRahul Tilwani",
-                                ],
-                                textStyle: TextStyle(
-                                    fontSize: _width * 0.06,
-                                    fontStyle: FontStyle.italic,
-                                    color: kProfTextColour),
-                                speed: Duration(milliseconds: 70),
-                                textAlign: TextAlign.start,
-                                displayFullTextOnTap: true,
-                                isRepeatingAnimation: false,
-                                alignment: AlignmentDirectional.center),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: _height * 0.1,
-                      ),
                       Container(
-                        height: _height * 0.1,
-                        child: ListView.separated(
-                          itemCount: 3,
-                          scrollDirection: Axis.horizontal,
-                          shrinkWrap: true,
-                          primary: true,
-                          itemBuilder: (context, index) => Container(
-                            // height: _height * 0.08,
-                            width: _width * 0.18,
-                            decoration: BoxDecoration(
-                                color: kProfSecondaryBackgroundColor,
-                                borderRadius:
-                                    BorderRadius.circular(_width * 0.03)),
-                            child: Column(
-                              children: [
-                                Text(
-                                  count[index],
-                                  style: TextStyle(
-                                      fontSize: _width * 0.08,
-                                      fontStyle: FontStyle.italic,
-                                      fontWeight: FontWeight.bold,
-                                      color: kProfTextColour),
-                                ),
-                                SizedBox(
-                                  height: _height * 0.02,
-                                ),
-                                Text(
-                                  foodType[index],
-                                  style: TextStyle(
-                                    fontSize: _width * 0.03,
-                                    fontStyle: FontStyle.italic,
-                                    color: Colors.white70,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          separatorBuilder: (context, index) => SizedBox(
-                            width: _width * 0.08,
-                          ),
+                        margin: EdgeInsets.only(
+                            left: _width * 0.2, top: _height * 0.08),
+                        child: CircleAvatar(
+                          radius: _width * 0.08,
+                          backgroundColor: kProfPrimaryBackgroundColor,
+                          backgroundImage: NetworkImage(kImageUrl),
                         ),
                       ),
                       SizedBox(
-                        height: _height * 0.1,
+                        width: _width * 0.04,
                       ),
                       Container(
-                        height: _width * 0.7,
-                        width: _width * 0.7,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(_width * 0.06),
-                          child: Image(
-                            fit: BoxFit.fill,
-                            image: NetworkImage(kMapPhoto),
-                          ),
-                        ),
+                        margin: EdgeInsets.only(top: _height * 0.08),
+                        child: TyperAnimatedTextKit(
+                            onTap: () {
+                              print("Tap Event");
+                            },
+                            text: [
+                              "Hello,\nRahul Tilwani",
+                            ],
+                            textStyle: TextStyle(
+                                fontSize: _width * 0.06,
+                                fontStyle: FontStyle.italic,
+                                color: kProfTextColour),
+                            speed: Duration(milliseconds: 70),
+                            textAlign: TextAlign.start,
+                            displayFullTextOnTap: true,
+                            isRepeatingAnimation: false,
+                            alignment: AlignmentDirectional.center),
                       ),
-                      SizedBox(
-                        height: _height * 0.08,
-                      ),
-                      Container(
-                        height: _width * 0.7,
-                        child: CollegeImageSlider(
-                          height: _height,
-                          width: _width,
-                        ),
-                      )
                     ],
                   ),
-                ),
+                  SizedBox(
+                    height: _height * 0.1,
+                  ),
+                  Container(
+                    height: _height * 0.1,
+                    child: ListView.separated(
+                      itemCount: 3,
+                      scrollDirection: Axis.horizontal,
+                      shrinkWrap: true,
+                      primary: true,
+                      itemBuilder: (context, index) => Container(
+                        // height: _height * 0.08,
+                        width: _width * 0.18,
+                        decoration: BoxDecoration(
+                            color: kProfSecondaryBackgroundColor,
+                            borderRadius: BorderRadius.circular(_width * 0.03)),
+                        child: Column(
+                          children: [
+                            Text(
+                              count[index],
+                              style: TextStyle(
+                                  fontSize: _width * 0.08,
+                                  fontStyle: FontStyle.italic,
+                                  fontWeight: FontWeight.bold,
+                                  color: kProfTextColour),
+                            ),
+                            SizedBox(
+                              height: _height * 0.02,
+                            ),
+                            Text(
+                              foodType[index],
+                              style: TextStyle(
+                                fontSize: _width * 0.03,
+                                fontStyle: FontStyle.italic,
+                                color: Colors.white70,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      separatorBuilder: (context, index) => SizedBox(
+                        width: _width * 0.08,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: _height * 0.1,
+                  ),
+                  
+                  Container(
+                    height: _width * 0.7,
+                    width: _width * 0.7,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(_width * 0.06),
+                      child: Image(
+                        fit: BoxFit.fill,
+                        image: NetworkImage(kMapPhoto),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: _height * 0.08,
+                  ),
+                  Container(
+                    height: _width * 0.7,
+                    child: CollegeImageSlider(
+                      height: _height,
+                      width: _width,
+                    ),
+                  )
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),

@@ -117,134 +117,123 @@ class _MaintainanceState extends State<Maintainance> {
     _keyboard = MediaQuery.of(context).viewInsets.bottom;
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            Container(
-              height: _height * 0.1,
-              width: _width,
-              child: Row(
-                children: [
-                  SizedBox(
-                    width: _width * 0.1,
-                  ),
-                  Icon(
-                    Icons.arrow_back_ios,
-                  ),
-                  Text(
-                    'Maintainance',
-                    style: TextStyle(color: Colors.black),
-                  ),
-                ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                height: _height * 0.1,
+                width: _width,
               ),
-            ),
-            Container(
-              height: _height * 0.1,
-              width: _width,
-            ),
-            Container(
-              height: _height * 0.8,
-              decoration: BoxDecoration(
-                  color: kProfSecondaryBackgroundColor,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(_width * 0.08),
-                      topRight: Radius.circular(_width * 0.08))),
-              child: Container(
-                margin: EdgeInsets.only(
-                  left: _width * 0.08,
-                  top: _width * 0.2,
-                  right: _width * 0.08,
-                ),
-                child: GridView.builder(
-                  // shrinkWrap: true,
-                  itemCount: titles.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: _width * 0.1,
-                      mainAxisSpacing: _width * 0.1),
-                  itemBuilder: (context, index) {
-                    return MaintainanceTile(
-                      index: index,
-                      title: titles[index],
-                      isSelected: currentSelectedIndex == index,
-                      onSelect: () {
-                        setState(() {
-                          currentSelectedIndex = index;
-                        });
-                        showBottomSheet(
-                          backgroundColor: Colors.transparent,
-                          context: context,
-                          builder: (context) => Container(
-                            height: _height * 0.8,
-                            width: _width,
-                            decoration: BoxDecoration(
-                                color: Colors.amber,
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(_width * 0.08),
-                                    topRight: Radius.circular(_width * 0.08))),
-                            child: SingleChildScrollView(
-                              child: Column(
-                                children: [
-                                  SizedBox(
-                                    height: _height * 0.03,
-                                  ),
-                                  Container(
-                                    child: Text(
-                                      'Plumber',
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: _width * 0.08),
+              Container(
+                height: _height * 0.1,
+                width: _width,
+              ),
+              Container(
+                height: _height * 0.8,
+                decoration: BoxDecoration(
+                    color: kProfSecondaryBackgroundColor,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(_width * 0.08),
+                        topRight: Radius.circular(_width * 0.08))),
+                child: Container(
+                  margin: EdgeInsets.only(
+                    left: _width * 0.08,
+                    top: _width * 0.2,
+                    right: _width * 0.08,
+                  ),
+                  child: GridView.builder(
+                    // shrinkWrap: true,
+                    itemCount: titles.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: _width * 0.1,
+                        mainAxisSpacing: _width * 0.1),
+                    itemBuilder: (context, index) {
+                      return MaintainanceTile(
+                        index: index,
+                        title: titles[index],
+                        isSelected: currentSelectedIndex == index,
+                        onSelect: () {
+                          setState(() {
+                            currentSelectedIndex = index;
+                          });
+                          showBottomSheet(
+                            backgroundColor: Colors.transparent,
+                            context: context,
+                            builder: (context) => Container(
+                              height: _height * 0.8,
+                              width: _width,
+                              decoration: BoxDecoration(
+                                  color: kProfPrimaryBackgroundColor,
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(_width * 0.08),
+                                      topRight:
+                                          Radius.circular(_width * 0.08))),
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  children: [
+                                    SizedBox(
+                                      height: _height * 0.03,
                                     ),
-                                  ),
-                                  SizedBox(
-                                    height: _height * 0.03,
-                                  ),
-                                  Container(
-                                    child: titleFieldWidget(),
-                                  ),
-                                  SizedBox(
-                                    height: _height * 0.03,
-                                  ),
-                                  Container(
-                                    child: descriptionFieldWidget(),
-                                  ),
-                                  SizedBox(
-                                    height: _height * 0.02,
-                                  ),
-                                  BottomBlueButton(
-                                    buttonText: 'Submit Complaint',
-                                    widthOfScreen: _width,
-                                    func: () {
-                                      setState(() {
-                                        descriptionTextEditingController
-                                            .clear();
-                                        titleTextEditingController.clear();
+                                    Container(
+                                      child: Text(
+                                        'Plumber',
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: _width * 0.08),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: _height * 0.03,
+                                    ),
+                                    Container(
+                                      child: titleFieldWidget(),
+                                    ),
+                                    SizedBox(
+                                      height: _height * 0.03,
+                                    ),
+                                    Container(
+                                      child: descriptionFieldWidget(),
+                                    ),
+                                    SizedBox(
+                                      height: _height * 0.02,
+                                    ),
+                                    BottomBlueButton(
+                                      buttonText: 'Submit Complaint',
+                                      widthOfScreen: _width,
+                                      func: () {
+                                        setState(() {
+                                          descriptionTextEditingController
+                                              .clear();
+                                          titleTextEditingController.clear();
 
-                                        showDialog(
-                                          context: context,
-                                          builder: (BuildContext context) =>
-                                              CustomDialog(
-                                            title: "Success!!",
-                                            description:
-                                                "Complaint recieved!!\nWe will resolve your issue as soon as possible",
-                                          ),
-                                        );
-                                      });
-                                    },
-                                  )
-                                ],
+                                          showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) =>
+                                                CustomDialog(
+                                              title: "Success!!",
+                                              description:
+                                                  "Complaint recieved!!\nWe will resolve your issue as soon as possible",
+                                            ),
+                                          );
+                                        });
+                                      },
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                        );
-                      },
-                      height: _height,
-                      width: _width,
-                    );
-                  },
+                          );
+                        },
+                        height: _height,
+                        width: _width,
+                      );
+                    },
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

@@ -118,8 +118,6 @@ class _PermssionState extends State<Permssion> {
       });
   }
 
- 
-
   @override
   Widget build(BuildContext context) {
     _safePaddingTop = MediaQuery.of(context).padding.top;
@@ -287,8 +285,7 @@ class _PermssionState extends State<Permssion> {
                   ),
                   Container(
                     child: Text(
-                      "${(selectedToDate.day - selectedFromDate.day)} Days"
-                          ,
+                      "${(selectedToDate.day - selectedFromDate.day)} Days",
                       style: new TextStyle(fontSize: 18.0, color: Colors.white),
                     ),
                   )
