@@ -3,9 +3,9 @@ import 'package:draw_graph/draw_graph.dart';
 import 'package:draw_graph/models/feature.dart';
 import 'package:flutter/material.dart';
 import 'package:jss_project/constants/constants.dart';
-import 'package:jss_project/screens/home/graph.dart';
-import 'package:jss_project/screens/home/graph2.dart';
-import 'package:jss_project/screens/home/home.dart';
+import 'package:jss_project/screens/Map/map.dart';
+import 'package:jss_project/screens/components/collegeImageSlider.dart';
+import 'package:jss_project/screens/graphs/graph.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class Home4 extends StatefulWidget {
@@ -16,6 +16,8 @@ class Home4 extends StatefulWidget {
 class _Home4State extends State<Home4> {
   double _safePaddingTop, _safePaddingBottom, _height, _width, _keyboard;
   List count = [400, 450, 560];
+  List titles = ['Breakfast', 'Lunch', 'Dinner'];
+  bool mapOpen = false;
 
   final List<Feature> features = [
     Feature(
@@ -34,6 +36,7 @@ class _Home4State extends State<Home4> {
       data: [0.5, 0.4, 0.85, 0.4, 0.7, 0.6, 0.25],
     ),
   ];
+  List colorList = [Colors.green, Colors.pink, Colors.cyan];
   @override
   Widget build(BuildContext context) {
     _safePaddingTop = MediaQuery.of(context).padding.top;
@@ -93,13 +96,49 @@ class _Home4State extends State<Home4> {
                     height: _height * 0.08,
                   ),
                   Container(
-                    height: _width * 0.22,
+                    height: _height * 0.14,
                     width: _width,
+                    // color: Colors.red,
                     margin: EdgeInsets.only(left: _width * 0.08),
                     child: ListView.separated(
                         scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) =>
-                            Stepper(width: _width, auth: count[index]),
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) => Container(
+                              height: _height * 0.14,
+                              child: Column(
+                                children: [
+                                  Stepper(
+                                    width: _width,
+                                    auth: count[index],
+                                    color: colorList[index],
+                                  ),
+                                  SizedBox(
+                                    height: _height * 0.01,
+                                  ),
+                                  Container(
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          height: 10,
+                                          width: 10,
+                                          decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: colorList[index],
+                                                width: 1.5),
+                                            color: colorList[index]
+                                                .withOpacity(0.3),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: _width * 0.01,
+                                        ),
+                                        Text(titles[index])
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
                         separatorBuilder: (context, index) => SizedBox(
                               width: _width * 0.1,
                             ),
@@ -110,19 +149,11 @@ class _Home4State extends State<Home4> {
                   ),
                   Container(
                     // width: _width - 60,
-                    height: _height / 2,
+                    // height: _height / 2,
                     child: LineGraph(
                       features: features,
-                      size: Size(_height / 2, _width - 60),
-                      labelX: [
-                        'Mon',
-                        'Tuey',
-                        'Wed',
-                        'Thur',
-                        'Fri',
-                        'Sat',
-                        'Sun'
-                      ],
+                      size: Size(_width, _height / 3),
+                      labelX: ['Mn', 'Te', 'Wd', 'Th', 'Fr', 'St', 'Sn'],
                       labelY: [
                         '100',
                         '200',
@@ -131,21 +162,40 @@ class _Home4State extends State<Home4> {
                         '500',
                         '600',
                       ],
-                      showDescription: true,
+                      // showDescription: true,
+
                       graphColor: Colors.white70,
                     ),
                   ),
-                  BarChartSample2(),
-                  LineChartSample2(),
-                  Container(
-                    height: _width * 0.7,
-                    width: _width * 0.7,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(_width * 0.06),
-                      child: Image(
-                        fit: BoxFit.fill,
-                        image: NetworkImage(kMapPhoto),
-                      ),
+                  // BarChartSample2(),
+                  SizedBox(
+                    height: _height * 0.1,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        mapOpen = !mapOpen;
+                      });
+                    },
+                    child: AnimatedContainer(
+                      duration: Duration(milliseconds: 200),
+
+                      curve: Curves.bounceIn,
+                      // color: Colors.green,
+                      height: mapOpen ? _height : _width * 0.7,
+                      width: mapOpen ? _width : _width * 0.7,
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Stack(
+                            children: [
+                              MapSample(),
+                              Container(
+                                height: _width * 0.7,
+                                width: _width * 0.7,
+                                color: Colors.transparent,
+                              )
+                            ],
+                          )),
                     ),
                   ),
                   SizedBox(
@@ -173,21 +223,22 @@ class Stepper extends StatelessWidget {
     Key key,
     @required double width,
     @required this.auth,
+    this.color,
   })  : _width = width,
         super(key: key);
 
   final double _width;
   final int auth;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: CircularStepProgressIndicator(
         stepSize: 2,
-        
         totalSteps: 600,
         currentStep: auth,
-        selectedColor: Colors.blueAccent,
+        selectedColor: color,
         unselectedColor: kProfPrimaryBackgroundColor,
         padding: 0,
         width: _width * 0.22,

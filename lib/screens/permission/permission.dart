@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:jss_project/constants/constants.dart';
-import 'package:jss_project/screens/maintainance/bottomBlueButton.dart';
+import 'package:jss_project/screens/components/bottomBlueButton.dart';
 import 'package:date_range_picker/date_range_picker.dart' as DateRagePicker;
-import 'package:jss_project/screens/maintainance/maintainanceDialog.dart';
+import 'package:jss_project/screens/components/dialog.dart';
 
 class Permssion extends StatefulWidget {
   @override

@@ -1,8 +1,8 @@
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:jss_project/screens/Map/map.dart';
+import 'package:jss_project/screens/components/bottomNav.dart';
 import 'package:jss_project/screens/home/homePage.dart';
-import 'package:jss_project/screens/Profile/bottomNav.dart';
 import 'package:jss_project/screens/hostelites/hostelites.dart';
 import 'package:jss_project/screens/maintainance/maintainance.dart';
 import 'package:jss_project/screens/permission/permission.dart';

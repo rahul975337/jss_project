@@ -46,8 +46,11 @@ class MapSampleState extends State<MapSample> {
   };
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      body: GoogleMap(
+    return new Container(
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
+
+      child: GoogleMap(
         markers: _markers,
         mapToolbarEnabled: true,
         zoomControlsEnabled: false,

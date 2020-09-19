@@ -1,6 +1,6 @@
-
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:jss_project/constants/constants.dart';
 
 class BarChartSample2 extends StatefulWidget {
   @override
@@ -8,8 +8,10 @@ class BarChartSample2 extends StatefulWidget {
 }
 
 class BarChartSample2State extends State<BarChartSample2> {
-  final Color leftBarColor = const Color(0xff53fdd7);
-  final Color rightBarColor = const Color(0xffff5182);
+  final Color col1 = Colors.green;
+  final Color col2 = Colors.pink;
+  final Color col3 = Colors.cyan;
+
   final double width = 7;
 
   List<BarChartGroupData> rawBarGroups;
@@ -20,13 +22,13 @@ class BarChartSample2State extends State<BarChartSample2> {
   @override
   void initState() {
     super.initState();
-    final barGroup1 = makeGroupData(0, 5, 12);
-    final barGroup2 = makeGroupData(1, 16, 12);
-    final barGroup3 = makeGroupData(2, 18, 5);
-    final barGroup4 = makeGroupData(3, 20, 16);
-    final barGroup5 = makeGroupData(4, 17, 6);
-    final barGroup6 = makeGroupData(5, 19, 1.5);
-    final barGroup7 = makeGroupData(6, 10, 1.5);
+    final barGroup1 = makeGroupData(0, 10, 20, 15);
+    final barGroup2 = makeGroupData(1,10, 20, 15);
+    final barGroup3 = makeGroupData(2, 10, 20, 15);
+    final barGroup4 = makeGroupData(3,10, 20, 15);
+    final barGroup5 = makeGroupData(4,10, 20, 15);
+    final barGroup6 = makeGroupData(5,10, 20, 15);
+    final barGroup7 = makeGroupData(6,10, 20, 15);
 
     final items = [
       barGroup1,
@@ -50,7 +52,7 @@ class BarChartSample2State extends State<BarChartSample2> {
       child: Card(
         elevation: 0,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-        color: const Color(0xff2c4260),
+        color: kProfPrimaryBackgroundColor,
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
@@ -103,7 +105,8 @@ class BarChartSample2State extends State<BarChartSample2> {
                               return;
                             }
 
-                            touchedGroupIndex = response.spot.touchedBarGroupIndex;
+                            touchedGroupIndex =
+                                response.spot.touchedBarGroupIndex;
 
                             setState(() {
                               if (response.touchInput is FlLongPressEnd ||
@@ -115,15 +118,21 @@ class BarChartSample2State extends State<BarChartSample2> {
                                 if (touchedGroupIndex != -1) {
                                   double sum = 0;
                                   for (BarChartRodData rod
-                                      in showingBarGroups[touchedGroupIndex].barRods) {
+                                      in showingBarGroups[touchedGroupIndex]
+                                          .barRods) {
                                     sum += rod.y;
                                   }
-                                  final avg =
-                                      sum / showingBarGroups[touchedGroupIndex].barRods.length;
+                                  final avg = sum /
+                                      showingBarGroups[touchedGroupIndex]
+                                          .barRods
+                                          .length;
 
                                   showingBarGroups[touchedGroupIndex] =
-                                      showingBarGroups[touchedGroupIndex].copyWith(
-                                    barRods: showingBarGroups[touchedGroupIndex].barRods.map((rod) {
+                                      showingBarGroups[touchedGroupIndex]
+                                          .copyWith(
+                                    barRods: showingBarGroups[touchedGroupIndex]
+                                        .barRods
+                                        .map((rod) {
                                       return rod.copyWith(y: avg);
                                     }).toList(),
                                   );
@@ -176,6 +185,14 @@ class BarChartSample2State extends State<BarChartSample2> {
                               return '5K';
                             } else if (value == 19) {
                               return '10K';
+                            } else if (value == 19) {
+                              return '10K';
+                            } else if (value == 19) {
+                              return '10K';
+                            } else if (value == 19) {
+                              return '10K';
+                            } else if (value == 19) {
+                              return '10K';
                             } else {
                               return '';
                             }
@@ -200,16 +217,21 @@ class BarChartSample2State extends State<BarChartSample2> {
     );
   }
 
-  BarChartGroupData makeGroupData(int x, double y1, double y2) {
+  BarChartGroupData makeGroupData(int x, double y1, double y2, double y3) {
     return BarChartGroupData(barsSpace: 4, x: x, barRods: [
       BarChartRodData(
         y: y1,
-        color: leftBarColor,
+        color: col1,
         width: width,
       ),
       BarChartRodData(
         y: y2,
-        color: rightBarColor,
+        color: col2,
+        width: width,
+      ),
+      BarChartRodData(
+        y: y3,
+        color: col3,
         width: width,
       ),
     ]);

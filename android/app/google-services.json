@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1037269759770",
+    "firebase_url": "https://enhanced-keel-289415.firebaseio.com",
+    "project_id": "enhanced-keel-289415",
+    "storage_bucket": "enhanced-keel-289415.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1037269759770:android:eb4616a0ea5c91c441dea3",
+        "android_client_info": {
+          "package_name": "com.jsscmp.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1037269759770-0jv4h5d8u1kacr79dglggqqjimm8v6el.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5ikbcC0UqvDB7-T8imzYODUCwCsTONW8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1037269759770-0jv4h5d8u1kacr79dglggqqjimm8v6el.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
