@@ -68,11 +68,14 @@ class _LoginState extends State<Login> {
                     ),
                     SizedBox(height: 5.0),
                     SizedBox(height: 40.0),
-                    GestureDetector(onTap: (){Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => Root()),
-                            );},
-                                          child: Container(
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Root()),
+                        );
+                      },
+                      child: Container(
                         height: 50.0,
                         child: Material(
                           borderRadius: BorderRadius.circular(20.0),
