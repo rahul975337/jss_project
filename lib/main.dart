@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jss_project/root.dart';
-import 'package:jss_project/screens/login/login.dart';
+import 'package:jss_project/screens/authenticate/login.dart';
+import 'package:jss_project/screens/wrapper.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData.dark(),
-      home: Login(),
+      home: Wrapper(),
     );
   }
 }
