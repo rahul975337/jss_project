@@ -128,7 +128,7 @@ class _MaintainanceState extends State<Maintainance> {
                     child: Text(
                   'Maintainance',
                   style: TextStyle(
-                      color: kProfTextColour,
+                      color: kProfAccentColour,
                       fontSize: _width * 0.07,
                       fontStyle: FontStyle.italic),
                 )),

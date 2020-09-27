@@ -62,7 +62,7 @@ class _RootState extends State<Root> {
             Home4(),
             Maintainance(),
             Permssion(),
-            MapSample(),
+           Hostelites(),
             SettingsPage(),
           ],
         ),
@@ -72,9 +72,9 @@ class _RootState extends State<Root> {
         child: BottomNav(
           items: <IconData>[
             FeatherIcons.home,
-          FeatherIcons.hardDrive,
+            FeatherIcons.hardDrive,
             FeatherIcons.phoneOutgoing,
-            FeatherIcons.map,
+            FeatherIcons.users,
             FeatherIcons.settings
           ],
           width: double.infinity,

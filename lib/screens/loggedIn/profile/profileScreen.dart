@@ -5,12 +5,16 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:open_mail_app/open_mail_app.dart';
 import 'package:flutter/services.dart';
 
-class MyClass extends StatefulWidget {
+class ProfilePage extends StatefulWidget {
+  final String name;
+  final String roomNo;
+
+  const ProfilePage({Key key, this.name, this.roomNo}) : super(key: key);
   @override
-  _MyClassState createState() => _MyClassState();
+  _ProfilePageState createState() => _ProfilePageState();
 }
 
-class _MyClassState extends State<MyClass> {
+class _ProfilePageState extends State<ProfilePage> {
   TextEditingController _numberCtrl = new TextEditingController();
 
   @override
@@ -163,7 +167,7 @@ class _MyClassState extends State<MyClass> {
               ),
               Center(
                 child: Text(
-                  'Antonius Bartkiewicz',
+                  widget.name,
                   style: TextStyle(fontSize: 20, color: Colors.white),
                 ),
               ),
@@ -172,7 +176,7 @@ class _MyClassState extends State<MyClass> {
               ),
               Center(
                 child: Text(
-                  'Room No : 104',
+                  'Room No : ${widget.roomNo}',
                   style: TextStyle(fontSize: 10, color: Colors.white),
                 ),
               ),

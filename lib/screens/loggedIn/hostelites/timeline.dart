@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jss_project/constants/constants.dart';
+import 'package:jss_project/screens/loggedIn/profile/profileScreen.dart';
+import 'package:page_transition/page_transition.dart';
 
 class Timeline extends StatelessWidget {
   const Timeline({
@@ -80,16 +82,24 @@ class Timeline extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: 3,
               itemBuilder: (context, index) => Container(
-                child: Column(
-                  children: [
-                    CircleAvatar(
-                      backgroundImage: NetworkImage(imageList[index]),
-                    ),
-                    Text(
-                      nameList[index],
-                      style: TextStyle(color: kProfTextColour),
-                    )
-                  ],
+                child: GestureDetector(
+                  onTap: () => Navigator.of(context).push(PageTransition(
+                      type: PageTransitionType.fade,
+                      child: ProfilePage(
+                        name: nameList[index],
+                        roomNo: indicators[index],
+                      ))),
+                  child: Column(
+                    children: [
+                      CircleAvatar(
+                        backgroundImage: NetworkImage(imageList[index]),
+                      ),
+                      Text(
+                        nameList[index],
+                        style: TextStyle(color: kProfTextColour),
+                      )
+                    ],
+                  ),
                 ),
               ),
               separatorBuilder: (context, index) => SizedBox(

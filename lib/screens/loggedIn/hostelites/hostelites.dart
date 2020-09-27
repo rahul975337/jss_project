@@ -9,7 +9,7 @@ class Hostelites extends StatefulWidget {
 
 class _HostelitesState extends State<Hostelites> {
   double _safePaddingTop, _safePaddingBottom, _height, _width, _keyboard;
-  List count = [
+  List roomNoList = [
     '200',
     '340',
     '640',
@@ -92,7 +92,7 @@ class _HostelitesState extends State<Hostelites> {
                   child: Timeline(
                     nameList: nameList,
                     imageList: imageList,
-                    indicators: count,
+                    indicators: roomNoList,
                     width: _width,
                     height: _height,
                   ),
