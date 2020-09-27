@@ -25,3 +25,14 @@ String kCollegePhotos =
     'https://content3.jdmagicbox.com/def_content/colleges/default-colleges-7.jpg?clr=1c4a4a';
 String kMapPhoto =
     'https://www.worldeasyguides.com/wp-content/uploads/2014/04/Where-is-Russell-Square-on-map-London.jpg';
+String kPlumberImg =
+    'https://www.flaticon.com/svg/static/icons/svg/307/307873.svg';
+  
+
+class Constants {
+  static String myUID = '';
+  static String myName = '';
+  static String myCitotoID = '';
+  static String myImage = '';
+  static String myMail = '';
+}

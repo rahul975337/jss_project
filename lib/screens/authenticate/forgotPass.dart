@@ -1,26 +1,17 @@
-// import 'package:citoto/screens/loggedIn/home/home.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jss_project/screens/authenticate/forgotPass.dart';
-import 'package:jss_project/screens/loggedIn/root.dart';
+
 import 'package:jss_project/shared/loading.dart';
-import 'package:page_transition/page_transition.dart';
 
 import '../../constants/constants.dart';
 import '../../services/auth.dart';
 
-// import 'package:citoto/services/auth.dart';
-// import 'package:citoto/shared/loading.dart';
-// import 'package:citoto/constants/constants.dart';
-// import 'package:citoto/screens/authenticate/forgotPassword.dart';
-// import 'package:page_transition/page_transition.dart';
-
-class Login extends StatefulWidget {
+class ForgotPassword extends StatefulWidget {
   @override
-  _LoginState createState() => _LoginState();
+  _ForgotPasswordState createState() => _ForgotPasswordState();
 }
 
-class _LoginState extends State<Login> {
+class _ForgotPasswordState extends State<ForgotPassword> {
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -29,9 +20,11 @@ class _LoginState extends State<Login> {
   double _height, _width;
   String secondField;
   String _citotoID = '';
-  String _password = '';
+  String _email = '';
   String _error;
   bool loading = false;
+  String _message =
+      'A link to enter a new password will be sent to the registered mail address affiliated with the account';
 
   @override
   Widget build(BuildContext context) {
@@ -44,24 +37,27 @@ class _LoginState extends State<Login> {
     return Scaffold(
       key: _scaffoldKey,
       backgroundColor: kProfPrimaryBackgroundColor,
-      body: loading
-          ? Stack(
-              children: <Widget>[
-                Positioned(
-                  top: 0.0,
-                  child: _screen(),
-                ),
-                Positioned(
-                  bottom: 0.0,
-                  child: Container(
-                    height: _height + _safePaddingBottom + _safePaddingTop,
-                    width: _width,
-                    child: Center(child: Loading()),
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).requestFocus(new FocusNode()),
+        child: loading
+            ? Stack(
+                children: <Widget>[
+                  Positioned(
+                    top: 0.0,
+                    child: _screen(),
                   ),
-                ),
-              ],
-            )
-          : _screen(),
+                  Positioned(
+                    bottom: 0.0,
+                    child: Container(
+                      height: _height + _safePaddingBottom + _safePaddingTop,
+                      width: _width,
+                      child: Center(child: Loading()),
+                    ),
+                  ),
+                ],
+              )
+            : _screen(),
+      ),
     );
   }
 
@@ -136,16 +132,17 @@ class _LoginState extends State<Login> {
                         margin: EdgeInsets.symmetric(vertical: _height * 0.01),
                         child: TextFormField(
                           style: TextStyle(color: kProfTextColour),
-                          validator: (val) => val.length < 6
-                              ? 'Enter a Password 6+ char long'
-                              : null,
-                          onChanged: (pass) {
+                          validator: (val) =>
+                              val.contains('@') && val.contains('.com')
+                                  ? null
+                                  : 'Enter a valid mail address',
+                          onChanged: (mail) {
                             setState(() {
-                              _password = pass;
+                              _email = mail;
                             });
                           },
                           decoration: InputDecoration(
-                              labelText: 'Password',
+                              labelText: 'Registered Email Address',
                               labelStyle: TextStyle(
                                   fontFamily: 'Montserrat',
                                   fontWeight: FontWeight.w400,
@@ -158,23 +155,23 @@ class _LoginState extends State<Login> {
                               focusedBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(
                                       color: Colors.blueAccent.shade400))),
-                          obscureText: true,
                         ),
                       ),
                       Container(
                         margin: EdgeInsets.only(
-                            top: _height * 0.04, bottom: _height * 0.04),
+                            top: _height * 0.04,
+                            bottom: _height * 0.02,
+                            left: _width * 0.02,
+                            right: _width * 0.02),
                         child: GestureDetector(
-                          onTap: () => Navigator.of(context).push(
-                              PageTransition(
-                                  type: PageTransitionType.fade,
-                                  child: ForgotPassword())),
+                          onTap: () => Navigator.pop(context),
                           child: Text(
-                            'Forgot Password',
+                            _message,
+                            textAlign: TextAlign.center,
                             style: TextStyle(
                               color: kProfTextColour,
                               fontWeight: FontWeight.w300,
-                              fontSize: _width * 0.04,
+                              fontSize: _width * 0.03,
                             ),
                           ),
                         ),
@@ -189,7 +186,7 @@ class _LoginState extends State<Login> {
                 width: _width * 0.85,
                 margin: EdgeInsets.only(bottom: _height * 0.03),
                 child: GestureDetector(
-                  onTap: () => _signInAction(),
+                  onTap: () => _forgotPassAction(context),
                   child: Container(
                     //width: 100.0,
                     decoration: BoxDecoration(
@@ -198,7 +195,7 @@ class _LoginState extends State<Login> {
                     ),
                     child: Center(
                       child: Text(
-                        'Sign In',
+                        'Send Mail',
                         style: TextStyle(fontSize: 18.0, color: Colors.white),
                       ),
                     ),
@@ -212,37 +209,39 @@ class _LoginState extends State<Login> {
     );
   }
 
-  _signInAction() async {
-    if (this.mounted) {
-      FocusScope.of(context).requestFocus(new FocusNode());
-    }
+  _forgotPassAction(BuildContext context) async {
     if (_formKey.currentState.validate()) {
       setState(() => loading = true);
-      dynamic result = await _auth.signInCitotoID(_citotoID, _password);
-      if (this.mounted) {
-        if (result == null) {
-          setState(() {
-            _error = 'Please give the correct credentials';
-            loading = false;
-          });
-        } else {
-          Navigator.of(context).pushReplacement(
-              PageTransition(child: Root(), type: PageTransitionType.fade));
-          setState(() {
-            _error = 'Successfully Signed In!!';
-            loading = false;
-          });
-        }
+      dynamic result = await _auth.resetPassword(_email, _citotoID);
+      if (result == null) {
+        setState(() {
+          _error = 'Password Reset Link has been sent to the mail';
+          loading = false;
+        });
+      } else if (result == 0) {
+        setState(() {
+          _error = 'Please give the correct credentials';
+          loading = false;
+        });
       }
     }
     if (_error != null) {
-      if (this.mounted) {
-        final _snackbar = SnackBar(
-          content: Text(_error),
-        );
-        _scaffoldKey.currentState.showSnackBar(_snackbar);
-      }
+      final _snackbar = SnackBar(
+        content: Text(_error),
+        // action: SnackBarAction(
+        //   label: 'OK',
+        //   onPressed: () {
+        //     // Some code to undo the change.
+        //   },
+        // ),
+      );
+      _scaffoldKey.currentState.showSnackBar(_snackbar);
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override

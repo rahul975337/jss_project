@@ -1,11 +1,12 @@
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:jss_project/screens/Map/map.dart';
-import 'package:jss_project/screens/components/bottomNav.dart';
-import 'package:jss_project/screens/home/homePage.dart';
-import 'package:jss_project/screens/hostelites/hostelites.dart';
-import 'package:jss_project/screens/maintainance/maintainance.dart';
-import 'package:jss_project/screens/permission/permission.dart';
+import 'package:jss_project/screens/loggedIn/Map/map.dart';
+import 'package:jss_project/screens/loggedIn/home/homePage.dart';
+import 'package:jss_project/screens/loggedIn/hostelites/hostelites.dart';
+import 'package:jss_project/screens/loggedIn/maintainance/maintainance.dart';
+import 'package:jss_project/screens/loggedIn/permission/permission.dart';
+import 'package:jss_project/screens/loggedIn/settings/settings.dart';
+import 'package:jss_project/shared/bottomNav.dart';
 
 class Root extends StatefulWidget {
   @override
@@ -62,7 +63,7 @@ class _RootState extends State<Root> {
             Maintainance(),
             Permssion(),
             MapSample(),
-            Hostelites()
+            SettingsPage(),
           ],
         ),
       ),
@@ -74,7 +75,7 @@ class _RootState extends State<Root> {
             FeatherIcons.heart,
             FeatherIcons.map,
             FeatherIcons.map,
-            FeatherIcons.activity
+            FeatherIcons.settings
           ],
           width: double.infinity,
           onTap: _navigationTapped,

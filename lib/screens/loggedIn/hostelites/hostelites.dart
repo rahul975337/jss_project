@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jss_project/constants/constants.dart';
-import 'package:jss_project/screens/hostelites/timeline.dart';
+import 'package:jss_project/screens/loggedIn/hostelites/timeline.dart';
 
 class Hostelites extends StatefulWidget {
   @override
