@@ -27,12 +27,12 @@ String kMapPhoto =
     'https://www.worldeasyguides.com/wp-content/uploads/2014/04/Where-is-Russell-Square-on-map-London.jpg';
 String kPlumberImg =
     'https://www.flaticon.com/svg/static/icons/svg/307/307873.svg';
-  
+
 
 class Constants {
   static String myUID = '';
   static String myName = '';
-  static String myCitotoID = '';
+  static String myJSSID = '';
   static String myImage = '';
   static String myMail = '';
 }

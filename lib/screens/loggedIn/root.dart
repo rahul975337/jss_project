@@ -1,12 +1,15 @@
 import 'package:feather_icons_flutter/feather_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:jss_project/helperFunctions/sharedFunctions.dart';
 import 'package:jss_project/screens/loggedIn/Map/map.dart';
+import 'package:jss_project/screens/loggedIn/chats/chat_screen.dart';
 import 'package:jss_project/screens/loggedIn/home/homePage.dart';
 import 'package:jss_project/screens/loggedIn/hostelites/hostelites.dart';
 import 'package:jss_project/screens/loggedIn/maintainance/maintainance.dart';
 import 'package:jss_project/screens/loggedIn/permission/permission.dart';
 import 'package:jss_project/screens/loggedIn/settings/settings.dart';
 import 'package:jss_project/shared/bottomNav.dart';
+import 'package:jss_project/shared/loading.dart';
 
 class Root extends StatefulWidget {
   @override
@@ -19,6 +22,20 @@ class _RootState extends State<Root> {
   int _page = 0;
   double _safePaddingTop, _safePaddingBottom, _height, _width, _keyboard;
   double height;
+  String _myName = '';
+  String _myImage = '';
+  // final DatabaseService _databaseService = DatabaseService();
+
+  _setFunction() async {
+    await SharedFunctions.getUserNameSharedPreference().then((value) {
+      setState(() => _myName = value);
+      print(_myName);
+    });
+     await SharedFunctions.getUserImageSharedPreference().then((imageLink) {
+      setState(() => _myImage = imageLink);
+    });
+  }
+
   void _navigationTapped(int page) {
     _pageController.jumpToPage(page);
   }
@@ -26,6 +43,7 @@ class _RootState extends State<Root> {
   @override
   void initState() {
     super.initState();
+    _setFunction();
     _pageController = PageController(initialPage: 0);
   }
 
@@ -51,37 +69,41 @@ class _RootState extends State<Root> {
     _height = MediaQuery.of(context).size.height -
         (_safePaddingBottom + _safePaddingTop);
     _keyboard = MediaQuery.of(context).viewInsets.bottom;
-    return Scaffold(
-      backgroundColor: Colors.blue,
-      body: Container(
-        child: PageView(
-          physics: NeverScrollableScrollPhysics(),
-          controller: _pageController,
-          onPageChanged: _onPageChanged,
-          children: <Widget>[
-            Home4(),
-            Maintainance(),
-            Permssion(),
-           Hostelites(),
-            SettingsPage(),
-          ],
-        ),
-      ),
-      bottomNavigationBar: Container(
-        key: key,
-        child: BottomNav(
-          items: <IconData>[
-            FeatherIcons.home,
-            FeatherIcons.hardDrive,
-            FeatherIcons.phoneOutgoing,
-            FeatherIcons.users,
-            FeatherIcons.settings
-          ],
-          width: double.infinity,
-          onTap: _navigationTapped,
-          currentIndex: _page,
-        ),
-      ),
-    );
+    return _myName == '' && _myImage == ''
+        ? Loading()
+        : Scaffold(
+            backgroundColor: Colors.blue,
+            body: Container(
+              child: PageView(
+                physics: NeverScrollableScrollPhysics(),
+                controller: _pageController,
+                onPageChanged: _onPageChanged,
+                children: <Widget>[
+                  Home4(),
+                  Maintainance(),
+                  Permssion(),
+                  Hostelites(),
+                  SettingsPage(),
+                  ChatScreen(),
+                ],
+              ),
+            ),
+            bottomNavigationBar: Container(
+              key: key,
+              child: BottomNav(
+                items: <IconData>[
+                  FeatherIcons.home,
+                  FeatherIcons.hardDrive,
+                  FeatherIcons.phoneOutgoing,
+                  FeatherIcons.users,
+                  FeatherIcons.settings,
+                  FeatherIcons.messageSquare
+                ],
+                width: double.infinity,
+                onTap: _navigationTapped,
+                currentIndex: _page,
+              ),
+            ),
+          );
   }
 }

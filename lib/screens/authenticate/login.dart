@@ -1,4 +1,3 @@
-// import 'package:citoto/screens/loggedIn/home/home.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jss_project/screens/authenticate/forgotPass.dart';
@@ -9,11 +8,6 @@ import 'package:page_transition/page_transition.dart';
 import '../../constants/constants.dart';
 import '../../services/auth.dart';
 
-// import 'package:citoto/services/auth.dart';
-// import 'package:citoto/shared/loading.dart';
-// import 'package:citoto/constants/constants.dart';
-// import 'package:citoto/screens/authenticate/forgotPassword.dart';
-// import 'package:page_transition/page_transition.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -28,7 +22,7 @@ class _LoginState extends State<Login> {
   double _safePaddingTop, _safePaddingBottom;
   double _height, _width;
   String secondField;
-  String _citotoID = '';
+  String _jssID = '';
   String _password = '';
   String _error;
   bool loading = false;
@@ -84,7 +78,7 @@ class _LoginState extends State<Login> {
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child: Text(
-                      "citoto",
+                      "JSS",
                       style: TextStyle(
                         color: kProfAccentColour,
                         fontSize: _width * 0.16,
@@ -110,14 +104,14 @@ class _LoginState extends State<Login> {
                         child: TextFormField(
                           style: TextStyle(color: kProfTextColour),
                           validator: (val) =>
-                              val.length < 10 ? 'Enter a valid CitotoID' : null,
+                              val.length < 10 ? 'Enter a valid JSSID' : null,
                           onChanged: (citID) {
                             setState(() {
-                              _citotoID = citID;
+                              _jssID = citID;
                             });
                           },
                           decoration: InputDecoration(
-                              labelText: 'Citoto Id',
+                              labelText: 'JSS Id',
                               labelStyle: TextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontFamily: 'Montserrat',
@@ -218,7 +212,7 @@ class _LoginState extends State<Login> {
     }
     if (_formKey.currentState.validate()) {
       setState(() => loading = true);
-      dynamic result = await _auth.signInCitotoID(_citotoID, _password);
+      dynamic result = await _auth.signInJSSID(_jssID, _password);
       if (this.mounted) {
         if (result == null) {
           setState(() {

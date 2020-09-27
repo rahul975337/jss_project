@@ -9,8 +9,6 @@ import 'package:provider/provider.dart';
 import 'screens/wrapper.dart';
 import 'services/auth.dart';
 
-
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -18,8 +16,6 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
-
-
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
@@ -28,7 +24,6 @@ class MyApp extends StatelessWidget {
 
     return MultiProvider(
       providers: [
-
         ChangeNotifierProvider(
           create: (context) => Mode(),
         ),
@@ -38,6 +33,5 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(debugShowCheckedModeBanner: false, home: Wrapper()),
     );
-   
   }
 }

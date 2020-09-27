@@ -50,13 +50,13 @@ class _SettingsPageState extends State<SettingsPage> {
     FeatherIcons.logOut,
   ];
   List settingsRoutesList = [null, null, null, null, null, null, null];
-  String userName = '', userCitotoID = '', userImage = '';
+  String userName = '', userJSSID = '', userImage = '';
   _settingData() async {
     await SharedFunctions.getUserNameSharedPreference().then((name) {
       setState(() => userName = name);
     });
-    await SharedFunctions.getUserCitotoIdSharedPreference().then((id) {
-      setState(() => userCitotoID = id);
+    await SharedFunctions.getUserJSSIdSharedPreference().then((id) {
+      setState(() => userJSSID = id);
     });
     await SharedFunctions.getUserImageSharedPreference().then((imageLink) {
       setState(() => userImage = imageLink);
@@ -130,9 +130,9 @@ class _SettingsPageState extends State<SettingsPage> {
                                 Container(
                                   margin: EdgeInsets.only(left: _width / 2),
                                   child: Text(
-                                    userCitotoID == null
+                                    userJSSID == null
                                         ? ''
-                                        : '@$userCitotoID',
+                                        : '@$userJSSID',
                                     style: TextStyle(
                                         color: kProfAccentColour,
                                         fontSize: _height * 0.02,

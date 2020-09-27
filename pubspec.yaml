@@ -30,6 +30,7 @@ dependencies:
   draw_graph: ^0.0.1
   google_maps_flutter: ^0.5.32
   geolocator: ^6.0.0
+  emoji_picker: ^0.1.0
   hexcolor: ^1.0.4
   step_progress_indicator: ^0.2.4+7
   timeline_tile: ^0.1.2

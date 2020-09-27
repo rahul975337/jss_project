@@ -30,6 +30,9 @@ class _Home4State extends State<Home4> {
       setState(() => _myName = value);
       print(_myName);
     });
+    await SharedFunctions.getUserImageSharedPreference().then((imageLink) {
+      setState(() => _myImage = imageLink);
+    });
     // await SharedFunctions.getUserNameSharedPreference().then((value) {
     //   setState(() => _myImage = value);
     //   print(_myImage);
@@ -56,7 +59,6 @@ class _Home4State extends State<Home4> {
   List colorList = [Colors.green, Colors.pink, Colors.cyan];
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     _setFunction();
@@ -93,7 +95,7 @@ class _Home4State extends State<Home4> {
                               child: CircleAvatar(
                                 radius: _width * 0.08,
                                 backgroundColor: kProfPrimaryBackgroundColor,
-                                backgroundImage: NetworkImage(kImageUrl),
+                                backgroundImage: NetworkImage(_myImage),
                               ),
                             ),
                             SizedBox(

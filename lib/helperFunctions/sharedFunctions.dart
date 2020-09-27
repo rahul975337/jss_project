@@ -5,7 +5,7 @@ class SharedFunctions {
   ////////////////////////////////   K E Y S   ////////////////////////////////////////
 
   static String sharedPreferenceUserLoggedInKey = 'ISLOGGEDIN';
-  static String sharedPreferenceUserCitotoIdKey = 'USERCITOTOIDKEY';
+  static String sharedPreferenceUserJSSIdKey = 'USERJSSIDKEY';
   static String sharedPreferenceUserNameKey = 'USERNAMEKEY';
   static String sharedPreferenceUserImageKey = 'USERIMAGEKEY';
   static String sharedPreferenceUserIDKey = 'USERIDKEY';
@@ -20,11 +20,11 @@ class SharedFunctions {
     return await prefs.setBool(sharedPreferenceUserLoggedInKey, isUserLoggedIn);
   }
 
-  // User's citotoId
-  static Future<bool> saveUserCitotoIdSharedPreference(
-      String userCitotoID) async {
+  // User's JSSId
+  static Future<bool> saveUserJSSIdSharedPreference(
+      String userJSSID) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    return await prefs.setString(sharedPreferenceUserCitotoIdKey, userCitotoID);
+    return await prefs.setString(sharedPreferenceUserJSSIdKey, userJSSID);
   }
 
   // My Name
@@ -53,10 +53,10 @@ class SharedFunctions {
     return prefs.getBool(sharedPreferenceUserLoggedInKey);
   }
 
-  // User's citotoId
-  static Future<String> getUserCitotoIdSharedPreference() async {
+  // User's JSSId
+  static Future<String> getUserJSSIdSharedPreference() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getString(sharedPreferenceUserCitotoIdKey);
+    return prefs.getString(sharedPreferenceUserJSSIdKey);
   }
 
   // User's Name

@@ -1,5 +1,5 @@
 class Users {
-  String citotoID;
+  String jssID;
   String username;
   String dp;
   String mobile;
@@ -7,7 +7,7 @@ class Users {
   int auth;
 
   Users({
-    this.citotoID,
+    this.jssID,
     this.username,
     this.dp,
     this.mobile,

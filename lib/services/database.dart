@@ -26,7 +26,7 @@ class DatabaseService {
     String mail,
     String image,
     String dob,
-    String citotoID,
+    String jssID,
   }) async {
     await _gettingSavedUserID();
     return await usersCollection.doc(_myUserID).update({
@@ -35,7 +35,7 @@ class DatabaseService {
       'mobile': mobile.split(' '),
       'mail': mail,
       'image': image,
-      'citotoID': citotoID,
+      'jssID': jssID,
     });
   }
 
@@ -49,11 +49,10 @@ class DatabaseService {
     if (userDoc != null) {
       List nameList = userDoc.data()['name'];
       _myData = Users(
-        citotoID: userDoc.data()['citotoID'],
+        jssID: userDoc.data()['jssID'],
         username: nameList[0] + ' ' + nameList[2],
         dp: userDoc.data()['image'],
         mobile: userDoc.data()['mobile'].join(' '),
-       
         mail: userDoc.data()['mail'],
       );
       return _myData;
@@ -62,97 +61,14 @@ class DatabaseService {
     }
   }
 
-  // to get user's mail address by user's citotoID
-  getUserMailbyCitotoId(String citotoID) async {
+  // to get user's mail address by user's jssID
+  getUserMailbyJSSId(String jssID) async {
     QuerySnapshot searchResult =
-        await usersCollection.where('citotoID', isEqualTo: citotoID).get();
+        await usersCollection.where('jssID', isEqualTo: jssID).get();
     if (searchResult != null) {
       return searchResult.docs[0].data()['mail'];
     } else {
       return null;
     }
   }
-
-  // /////////////////////////////////   M I N G L E  ///////////////////////////////////////
-
-  // // to get all chatrooms
-  // Future<Stream> getChatRooms({bool professional}) async {
-  //   await _gettingSavedUserID();
-  //   try {
-  //     return await conversationCollection
-  //         .where('users', arrayContains: _myUserID)
-  //         .snapshots();
-  //   } catch (e) {
-  //     print(e);
-  //     return null;
-  //   }
-  // }
-
-  // /////////////////////////////////   C H A T S  ///////////////////////////////////////
-
-  // // to send a message
-  // Future sendMessages(
-  //     {String documentID, String message, bool professional}) async {
-  //   await _gettingSavedUserID();
-  //   Timestamp time = Timestamp.fromMillisecondsSinceEpoch(
-  //       DateTime.now().millisecondsSinceEpoch);
-
-  //   return await conversationCollection
-  //       .doc(documentID)
-  //       .collection('conversations')
-  //       .add({
-  //     'message': message,
-  //     'sender': _myUserID,
-  //     'time': time.toString(),
-  //   });
-  // }
-
-  // // to get all chat conversations depending on the mode
-  // Future<Stream> getConversations(
-  //     {String documentID, bool professional}) async {
-  //   await _gettingSavedUserID();
-
-  //   return await conversationCollection
-  //       .doc(documentID)
-  //       .collection('conversations')
-  //       .orderBy('time', descending: true)
-  //       .snapshots();
-  // }
-
-  // ////////////////////////// P R O F I L E ////////////////////////////////////////
-
-  // Future<Map<String, dynamic>> getProfileData(id) async {
-  //   await _gettingSavedUserID();
-
-  //   try {
-  //     QuerySnapshot profileQuery =
-  //         await usersCollection.where("userID", isEqualTo: id).get();
-
-  //     QuerySnapshot users = await usersCollection.get();
-
-  //     if (profileQuery != null) {
-  //       //TODO: replace this whole return with profile modal( Rahul & Shantanu)
-  //       return {
-  //         "status": "success",
-  //         "userName": profileQuery.docs.single.data()['name'][0] +
-  //             " " +
-  //             profileQuery.docs.single.data()['name'][2],
-  //         "authPercent": profileQuery.docs.single.data()['authPercent'],
-  //         "image": profileQuery.docs.single.data()['image'],
-  //         "citotoID": profileQuery.docs.single.data()['citotoID'],
-  //         "mobileNumber": profileQuery.docs.single.data()['mobile'],
-  //         "mail": profileQuery.docs.single.data()['mail'],
-  //         "auths": profileQuery.docs.single.data()['auths'],
-  //         "userID": profileQuery.docs.single.data()['userID'],
-  //         "profStatus": profileQuery.docs.single.data()["status"][0],
-  //         "socStatus": profileQuery.docs.single.data()["status"][1],
-  //       };
-  //     } else {
-  //       return null;
-  //     }
-  //   } catch (e) {
-  //     print(e);
-  //     return null;
-  //   }
-  // }
 }

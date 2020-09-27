@@ -21,10 +21,10 @@ class AuthService {
         .map(_userFromFirebaseUser);
   }
 
-  // Login with citoto ID and Password
-  Future signInCitotoID(String citotoID, String password) async {
+  // Login with jss ID and Password
+  Future signInJSSID(String jssID, String password) async {
     try {
-      String email = await _database.getUserMailbyCitotoId(citotoID);
+      String email = await _database.getUserMailbyJSSId(jssID);
       if (email != null) {
         UserCredential result = await _auth.signInWithEmailAndPassword(
             email: email, password: password);
@@ -37,7 +37,7 @@ class AuthService {
         SharedFunctions.saveUserLoggedInSharedPreference(true);
         SharedFunctions.saveUserIDSharedPreference(user.uid);
         SharedFunctions.saveUserImageSharedPreference(userImage);
-        SharedFunctions.saveUserCitotoIdSharedPreference(citotoID);
+        SharedFunctions.saveUserJSSIdSharedPreference(jssID);
         SharedFunctions.saveUserNameSharedPreference(userName);
         return _userFromFirebaseUser(user);
       } else {
@@ -50,9 +50,9 @@ class AuthService {
   }
 
   // Reset Password Link
-  Future resetPassword(String email, String citotoID) async {
+  Future resetPassword(String email, String jssID) async {
     try {
-      final String result = await _database.getUserMailbyCitotoId(citotoID);
+      final String result = await _database.getUserMailbyJSSId(jssID);
       if (result == email) {
         return await _auth.sendPasswordResetEmail(email: email).catchError((e) {
           print(e);
@@ -73,7 +73,7 @@ class AuthService {
       SharedFunctions.saveUserLoggedInSharedPreference(false);
       SharedFunctions.saveUserIDSharedPreference(meh);
       SharedFunctions.saveUserImageSharedPreference(meh);
-      SharedFunctions.saveUserCitotoIdSharedPreference(meh);
+      SharedFunctions.saveUserJSSIdSharedPreference(meh);
       SharedFunctions.saveUserNameSharedPreference(meh);
 
       return await _auth.signOut();

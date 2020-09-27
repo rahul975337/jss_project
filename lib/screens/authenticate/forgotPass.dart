@@ -19,7 +19,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   double _safePaddingTop, _safePaddingBottom;
   double _height, _width;
   String secondField;
-  String _citotoID = '';
+  String _jssID = '';
   String _email = '';
   String _error;
   bool loading = false;
@@ -80,7 +80,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child: Text(
-                      "citoto",
+                      "JSS",
                       style: TextStyle(
                         color: kProfAccentColour,
                         fontSize: _width * 0.16,
@@ -106,14 +106,14 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         child: TextFormField(
                           style: TextStyle(color: kProfTextColour),
                           validator: (val) =>
-                              val.length < 10 ? 'Enter a valid CitotoID' : null,
+                              val.length < 10 ? 'Enter a valid JSSID' : null,
                           onChanged: (citID) {
                             setState(() {
-                              _citotoID = citID;
+                              _jssID = citID;
                             });
                           },
                           decoration: InputDecoration(
-                              labelText: 'Citoto Id',
+                              labelText: 'JSS Id',
                               labelStyle: TextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontFamily: 'Montserrat',
@@ -212,7 +212,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   _forgotPassAction(BuildContext context) async {
     if (_formKey.currentState.validate()) {
       setState(() => loading = true);
-      dynamic result = await _auth.resetPassword(_email, _citotoID);
+      dynamic result = await _auth.resetPassword(_email, _jssID);
       if (result == null) {
         setState(() {
           _error = 'Password Reset Link has been sent to the mail';
