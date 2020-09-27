@@ -72,8 +72,8 @@ class _RootState extends State<Root> {
         child: BottomNav(
           items: <IconData>[
             FeatherIcons.home,
-            FeatherIcons.heart,
-            FeatherIcons.map,
+          FeatherIcons.hardDrive,
+            FeatherIcons.phoneOutgoing,
             FeatherIcons.map,
             FeatherIcons.settings
           ],
